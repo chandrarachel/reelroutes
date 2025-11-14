@@ -1,0 +1,215 @@
+.preference-panel {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.preference-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.preference-header h2 {
+  font-size: 28px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.preference-header p {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.preference-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.preference-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  color: var(--cathay-green);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cathay-light-green);
+}
+
+.preference-item {
+  margin-bottom: 16px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.checkbox-label:hover {
+  border-color: var(--cathay-green);
+  background: var(--cathay-light-green);
+}
+
+.checkbox-label input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--cathay-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkbox-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.checkbox-content > svg {
+  color: var(--cathay-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkbox-content strong {
+  display: block;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.checkbox-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Dietary Options */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.option-chip {
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.option-chip:hover {
+  border-color: var(--cathay-green);
+  background: var(--cathay-light-green);
+}
+
+.option-chip.selected {
+  background: var(--cathay-green);
+  border-color: var(--cathay-green);
+  color: white;
+}
+
+/* Language Select */
+.language-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-select:hover,
+.language-select:focus {
+  border-color: var(--cathay-green);
+  outline: none;
+}
+
+/* Assistance Input */
+.assistance-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-primary);
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.assistance-input:hover,
+.assistance-input:focus {
+  border-color: var(--cathay-green);
+  outline: none;
+}
+
+.assistance-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Actions */
+.preference-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.save-confirmation {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--cathay-light-green);
+  border-left: 4px solid var(--cathay-green);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cathay-green);
+  font-weight: 500;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .preference-panel {
+    padding: 24px;
+  }
+
+  .option-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .preference-actions {
+    flex-direction: column-reverse;
+  }
+
+  .preference-actions button {
+    width: 100%;
+  }
+}

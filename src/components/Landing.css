@@ -1,0 +1,151 @@
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #0a3d20 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.landing-content {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.landing-header {
+  margin-bottom: 60px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.logo-icon {
+  color: var(--cathay-green);
+  margin-bottom: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.landing-header h1 {
+  font-size: 64px;
+  color: white;
+  margin-bottom: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.landing-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.option-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 48px 32px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeIn 1s ease-out;
+}
+
+.option-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--cathay-green);
+  background: rgba(0, 126, 58, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 126, 58, 0.3);
+}
+
+.option-card svg {
+  color: var(--cathay-green);
+  transition: all 0.3s ease;
+}
+
+.option-card:hover svg {
+  transform: scale(1.1);
+}
+
+.option-card h2 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.option-card p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.landing-footer {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .landing-header h1 {
+    font-size: 48px;
+  }
+
+  .tagline {
+    font-size: 20px;
+  }
+
+  .landing-options {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .option-card {
+    padding: 40px 24px;
+  }
+
+  .option-card h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-header h1 {
+    font-size: 36px;
+  }
+
+  .tagline {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .option-card svg {
+    width: 40px;
+    height: 40px;
+  }
+}

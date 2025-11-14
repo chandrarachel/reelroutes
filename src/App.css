@@ -1,0 +1,79 @@
+.passenger-interface {
+  min-height: 100vh;
+}
+
+.movie-view,
+.preferences-view,
+.saved-view {
+  min-height: 100vh;
+  background: var(--cathay-light-grey);
+  padding: 24px;
+}
+
+.back-button {
+  margin-bottom: 24px;
+  padding: 12px 24px;
+  background: white;
+  border: 2px solid var(--cathay-green);
+  border-radius: 8px;
+  color: var(--cathay-green);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button:hover {
+  background: var(--cathay-light-green);
+  transform: translateX(-4px);
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--cathay-light-grey);
+}
+
+/* Error State */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--cathay-light-grey);
+  padding: 40px;
+  text-align: center;
+}
+
+.error-container h2 {
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.error-container p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .movie-view,
+  .preferences-view,
+  .saved-view {
+    padding: 16px;
+  }
+
+  .back-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

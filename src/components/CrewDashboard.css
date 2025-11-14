@@ -1,0 +1,375 @@
+.crew-dashboard {
+  min-height: 100vh;
+  background: var(--cathay-light-grey);
+  padding: 24px;
+}
+
+.crew-dashboard.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  color: var(--cathay-green);
+  margin-bottom: 4px;
+}
+
+.dashboard-header > div > p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.filter-tabs button {
+  padding: 10px 20px;
+  border: 2px solid var(--border-color);
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-primary);
+}
+
+.filter-tabs button:hover {
+  border-color: var(--cathay-green);
+  background: var(--cathay-light-green);
+}
+
+.filter-tabs button.active {
+  background: var(--cathay-green);
+  border-color: var(--cathay-green);
+  color: white;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Passenger List */
+.passenger-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passenger-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.passenger-card:hover {
+  border-color: var(--cathay-green);
+  transform: translateX(4px);
+}
+
+.passenger-card.selected {
+  border-color: var(--cathay-green);
+  background: var(--cathay-light-green);
+}
+
+.passenger-card.priority-high {
+  border-left: 4px solid #d32f2f;
+}
+
+.passenger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.passenger-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.passenger-info > svg {
+  color: var(--cathay-green);
+  flex-shrink: 0;
+}
+
+.passenger-info h4 {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.seat-number {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.message-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #d32f2f;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.passenger-quick-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--cathay-light-grey);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.info-tag svg {
+  color: var(--cathay-green);
+  flex-shrink: 0;
+}
+
+.info-tag.alert {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.info-tag.alert svg {
+  color: #d32f2f;
+}
+
+.sub-info {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+/* Passenger Details */
+.passenger-details {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--cathay-light-green);
+  margin-bottom: 24px;
+}
+
+.details-header h2 {
+  font-size: 24px;
+  color: var(--cathay-green);
+  margin-bottom: 4px;
+}
+
+.details-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details-section {
+  padding: 20px;
+  background: var(--cathay-light-grey);
+  border-radius: 8px;
+}
+
+.details-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--cathay-green);
+  margin-bottom: 16px;
+}
+
+.details-section.alert-section {
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+
+.details-section.alert-section h3 {
+  color: #e65100;
+}
+
+.preference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preference-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.preference-row svg {
+  color: var(--cathay-green);
+  flex-shrink: 0;
+}
+
+.dietary-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dietary-tag {
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid var(--cathay-green);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cathay-green);
+}
+
+.assistance-note {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message-item {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--cathay-green);
+}
+
+.message-content p {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.message-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.interest-note {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.details-actions {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.details-actions button {
+  width: 100%;
+}
+
+/* No Selection State */
+.no-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.no-selection svg {
+  margin-bottom: 16px;
+  color: var(--cathay-grey);
+}
+
+.no-selection p {
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .passenger-details {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .crew-dashboard {
+    padding: 16px;
+  }
+
+  .dashboard-header {
+    padding: 16px;
+  }
+
+  .filter-tabs {
+    flex-direction: column;
+  }
+
+  .filter-tabs button {
+    width: 100%;
+  }
+}
