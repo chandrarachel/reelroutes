@@ -24,7 +24,7 @@ const CrewDashboard = ({ flightId = 'CX123', crewSection = 'Business' }) => {
     const mockPassengers = [
       {
         id: 'P001',
-        name: 'Keshia Poedjiono',
+        name: 'Jane Doe',
         seat: '12A',
         status: 'awake',
         preferences: {
