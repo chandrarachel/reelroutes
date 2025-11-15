@@ -24,14 +24,14 @@ const CrewDashboard = ({ flightId = 'CX123', crewSection = 'Business' }) => {
     const mockPassengers = [
       {
         id: 'P001',
-        name: 'Sarah Chen',
+        name: 'Keshia Poedjiono',
         seat: '12A',
         status: 'awake',
         preferences: {
           wakeForMeals: true,
           sleepThroughService: false,
           dietaryRestrictions: ['Vegetarian', 'Gluten-Free'],
-          languagePreference: 'Mandarin',
+          languagePreference: 'English',
           specialAssistance: '',
           firstTimeFlyernote: '',
         },

@@ -13,9 +13,9 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState({
     id: 'user-123',
-    name: 'Sarah Chen',
+    name: 'Keshia Poedjiono',
     seat: '12A',
-    flightId: 'CX123',
+    flightId: 'CX 2025',
   });
 
   const handleNavigate = (view, data = null) => {

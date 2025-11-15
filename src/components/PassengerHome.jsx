@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import reelRoutesLogo from '../assets/reelRoutesWhiteLogo.svg';
 import { Film, Heart, Settings, MessageCircle, Plane } from 'lucide-react';
 import './PassengerHome.css';
 
@@ -6,7 +7,7 @@ const PassengerHome = ({ onNavigate, user }) => {
   const [movies] = useState([
     {
       id: 1,
-      title: 'In the Mood for Love',
+      title: 'The Flavours of Friendship',
       genre: 'Romance',
       year: '2000',
       duration: '98 min',
@@ -51,7 +52,7 @@ const PassengerHome = ({ onNavigate, user }) => {
       {/* Header */}
       <div className="home-header">
         <div className="cathay-logo">
-          <Plane size={32} />
+          <img src={reelRoutesLogo} alt="ReelRoutes Logo" className="logo-icon" style={{ height: 32, width: 32, marginRight: 8 }} />
           <h1>ReelRoutes</h1>
         </div>
         <div className="header-actions">
@@ -72,9 +73,9 @@ const PassengerHome = ({ onNavigate, user }) => {
         <h2>Welcome aboard, {user?.name || 'Passenger'}!</h2>
         <p>Discover experiences from the movies you love</p>
         <div className="flight-info">
-          <span>Flight CX123</span>
+          <span>Flight CX 2025</span>
           <span>•</span>
-          <span>Hong Kong → Singapore</span>
+          <span>Indonesia → Hong Kong</span>
           <span>•</span>
           <span>Seat {user?.seat || '12A'}</span>
         </div>

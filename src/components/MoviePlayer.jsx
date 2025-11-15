@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Play, Heart, MapPin, Clock, Info, X } from 'lucide-react';
 import { getSceneImageUrl } from '../lib/supabase';
+import haoHaoDimSumImg from '../assets/destinations/haoHaoDimSum.png';
+import nikeStoreImg from '../assets/destinations/nikeStore.png';
+import reelRoutesLogo from '../assets/reelRoutesWhiteLogo.svg';
+import hongKongMoA from '../assets/destinations/moa.png';
+
+import jaMorantShoes from '../assets/products/jaMorant.png';
 import { transactionAPI } from '../lib/api';
 import './MoviePlayer.css';
 
@@ -15,39 +21,49 @@ const MoviePlayer = ({ movie, userId }) => {
   const scenes = [
     {
       id: 'scene-1',
-      timestamp: 245, // 4:05
-      title: 'Avenue of the Stars',
-      location: 'Hong Kong',
-      type: 'landmark',
-      description: 'Iconic waterfront promenade with stunning harbor views',
-      image: 'scenes/avenue-stars-1.jpg',
-      bookable: true,
-      price: 'HKD 2,500',
-      asiaMiles: 15000,
-    },
-    {
-      id: 'scene-2',
-      timestamp: 520, // 8:40
-      title: 'Authentic Dim Sum',
-      location: 'Tim Ho Wan, Hong Kong',
+      timestamp: 5,
+      title: 'Hong Mi Chang',
+      subtitle: "The food you selected is called Hong Mi Chang. It’s a common item Hong Kong dim sum. In The Flavours of Friendship, the two friends had this delicious meal at",
+      restaurant: 'Hao Hao Dim Sum',
+      cuisine: 'Hong Kong Dim Sum & Coconut Chicken Hot Pot',
+      location: 'Mong Kok, Hong Kong',
+      rating: 4.5,
       type: 'food',
       description: 'Michelin-starred dim sum restaurant',
-      image: 'scenes/dimsum-1.jpg',
+      image: haoHaoDimSumImg,
       bookable: true,
       price: 'HKD 150',
       asiaMiles: 1000,
     },
     {
-      id: 'scene-3',
-      timestamp: 890, // 14:50
-      title: 'Victoria Peak',
-      location: 'Hong Kong',
-      type: 'landmark',
-      description: 'Panoramic views of Hong Kong skyline',
-      image: 'scenes/victoria-peak-1.jpg',
+      id: 'scene-2',
+      timestamp: 10,
+      title: 'Nike Ja Morant One',
+      subtitle: 'The item you selected is the Nike Ja Morant One. It’s a recent addition in Nike’s shoes line-up. It’s seen here being worn by Ja Morant. Hong Kong has a number of Nike stores, famously on the iconic Sneaker Street; here’s more information!',
+      location: 'Nike Mong Kok Store, Hong Kong',
+      product: {
+        name: 'Nike Ja Morant One',
+        description: 'Nike’s Shoes',
+        image: jaMorantShoes, 
+      },
+      type: 'shopping',
+      description: 'Shoes worn by John Doe during the basketball game',
+      image: nikeStoreImg,
       bookable: true,
       price: 'HKD 3,200',
       asiaMiles: 20000,
+    },
+        {
+      id: 'scene-3',
+      timestamp: 15,
+      title: 'Hong Kong Museum of Art',
+      location: 'Tsim Sha Tsui, Hong Kong',
+      type: 'landmark',
+      description: 'The area you selected is Hong Kong’s Museum of Art, right next to Avenue of Stars. Cloud Starships’s climax takes place to harken back to an earlier heartbreaking scene in the movie. Both popular tourist spots, it shouldn’t be a surprise that they are often placed high on places to visit lists to Hong Kong.',
+      image: hongKongMoA,
+      bookable: true,
+      price: 'HKD 2,500',
+      asiaMiles: 15000,
     },
   ];
 
@@ -60,7 +76,9 @@ const MoviePlayer = ({ movie, userId }) => {
           const newTime = prev + 1;
           
           // Check if we hit a scene timestamp
-          const scene = scenes.find(s => s.timestamp === newTime);
+          const scene = scenes.find(s => 
+            Math.abs(s.timestamp - newTime) <= 1 && s.bookable
+          );
           if (scene) {
             setActiveScene(scene);
             setShowOverlay(true);
@@ -140,56 +158,76 @@ const MoviePlayer = ({ movie, userId }) => {
 
         {/* Scene Overlay */}
         {showOverlay && activeScene && (
-          <div className="scene-overlay slide-up">
-            <button 
-              className="overlay-close"
-              onClick={() => setShowOverlay(false)}
-            >
-              <X size={24} />
-            </button>
+          <div className="reelroutes-overlay">
+            <div className="overlay-header">
+              <div className="reelroutes-logo">
+                <img src={reelRoutesLogo} alt="ReelRoutes Logo" className="logo-icon" />
+                <span className="logo-text">ReelRoutes</span>
+              </div>
+              <button 
+                className="overlay-close"
+                onClick={() => setShowOverlay(false)}
+              >
+                Close ×
+              </button>
+            </div>
 
-            <div className="scene-content">
-              <div className="scene-image">
-                <img 
-                  src={getSceneImageUrl(activeScene.image) || '/placeholder-scene.jpg'} 
-                  alt={activeScene.title}
-                />
-                <span className="scene-badge">{activeScene.type}</span>
+            <div className="overlay-content">
+              <div className="food-info">
+                <p className="food-description">
+                  {activeScene.subtitle ? (
+                    <span>{activeScene.subtitle}</span>
+                  ) : (
+                    <span>{activeScene.description}</span>
+                  )}
+                </p>
               </div>
 
-              <div className="scene-details">
-                <h3>{activeScene.title}</h3>
-                <div className="scene-location">
-                  <MapPin size={16} />
-                  <span>{activeScene.location}</span>
+              <div className="restaurant-card">
+                <div className="restaurant-image">
+                  <img 
+                    src={activeScene.image} 
+                    alt={activeScene.restaurant || activeScene.title}
+                  />
                 </div>
-                <p className="scene-description">{activeScene.description}</p>
-
-                {activeScene.bookable && (
-                  <div className="scene-booking">
-                    <div className="price-info">
-                      <span className="price">{activeScene.price}</span>
-                      <span className="miles">or {activeScene.asiaMiles.toLocaleString()} Asia Miles</span>
+                <div className="restaurant-details">
+                  <h3 className="restaurant-name">{activeScene.restaurant || activeScene.title}</h3>
+                  <p className="restaurant-cuisine">{activeScene.cuisine}</p>
+                  <div className="restaurant-location">{activeScene.location}</div>
+                  {activeScene.rating && (
+                    <div className="restaurant-rating">
+                      {'★'.repeat(Math.floor(activeScene.rating))}{'☆'.repeat(5 - Math.floor(activeScene.rating))}
                     </div>
+                  )}
+                </div>
+              </div>
 
-                    <div className="scene-actions">
-                      <button
-                        className={`btn-save ${isSaved(activeScene.id) ? 'saved' : ''}`}
-                        onClick={() => handleSaveScene(activeScene)}
-                        disabled={isSaved(activeScene.id)}
-                      >
-                        <Heart 
-                          size={20} 
-                          fill={isSaved(activeScene.id) ? 'currentColor' : 'none'}
-                        />
-                        {isSaved(activeScene.id) ? 'Saved' : 'Save for Later'}
-                      </button>
-                      
-                      <button className="btn btn-primary">
-                        Book Now
-                      </button>
-                    </div>
+              {activeScene.product && (
+                <div className="product-card">
+                  <div className="product-image">
+                    <img 
+                      src={activeScene.product.image || '/placeholder-product.jpg'} 
+                      alt={activeScene.product.name}
+                    />
                   </div>
+                  <div className="product-details">
+                    <h4 className="product-name">{activeScene.product.name}</h4>
+                    <p className="product-description">{activeScene.product.description}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="overlay-actions">
+                <button 
+                  className="add-destination-btn"
+                  onClick={() => handleSaveScene(activeScene)}
+                >
+                  {isSaved(activeScene.id) ? '✓ Added to Cathay App' : 'Add Destination to Cathay App'}
+                </button>
+                {activeScene.product && (
+                  <button className="add-item-btn">
+                    Add Item to Cart
+                  </button>
                 )}
               </div>
             </div>
@@ -234,7 +272,7 @@ const MoviePlayer = ({ movie, userId }) => {
             >
               <div className="timeline-image">
                 <img 
-                  src={getSceneImageUrl(scene.image) || '/placeholder-scene.jpg'} 
+                  src={scene.product ? scene.product.image : scene.image || '/placeholder-scene.jpg'} 
                   alt={scene.title}
                 />
                 {isSaved(scene.id) && (

@@ -20,8 +20,8 @@
 
 .logo-icon {
   color: var(--cathay-green);
-  margin-bottom: 24px;
-  animation: float 3s ease-in-out infinite;
+  /* margin-bottom: 24px; */
+  /* animation: float 3s ease-in-out infinite; */
 }
 
 @keyframes float {

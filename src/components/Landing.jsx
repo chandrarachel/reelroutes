@@ -10,10 +10,10 @@ const Landing = () => {
       <div className="landing-content">
         <div className="landing-header">
           <Plane size={64} className="logo-icon" />
+          {/* <img src={require("../assets/reelRoutesWhiteLogo.svg")} alt="ReelRoutes Logo" className="logo-icon" /> */}
           <h1>ReelRoutes</h1>
           <p className="tagline">Turn Every Scene Into a Journey</p>
         </div>
-
         <div className="landing-options">
           <button 
             className="option-card passenger-option"
