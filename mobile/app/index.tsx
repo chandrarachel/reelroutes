@@ -4,12 +4,12 @@ import { Image } from 'expo-image'
 import { View, Text, TextInput, StyleSheet, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Search, Funnel } from 'lucide-react-native';
-import { VerticalCard } from '../../components/VerticalCardProp';
-import { Destination } from '../../types/destination';
-import { useDestinations } from '../../hooks/useDestinations';
-import { useDestinationStore } from '../../stores/destinationStore';
+import { VerticalCard } from '../components/VerticalCardProp';
+import { Destination } from '../types/destination';
+import { useDestinations } from '../hooks/useDestinations';
+import { useDestinationStore } from '../stores/destinationStore';
 
-export default function Dashboard() {
+export default function HomeScreen() {
     const router = useRouter();
     const { setSelectedDestination } = useDestinationStore();
     const { destinations, loading, error } = useDestinations();
@@ -17,7 +17,9 @@ export default function Dashboard() {
     const handlePress = (destination: Destination) => {
         setSelectedDestination(destination);
         console.log(destination.name);
-        router.push('/');
+
+        const categorySlug = destination.category;
+        router.push(`/destination/${categorySlug}/${destination.id}`);
       };
 
   return (
