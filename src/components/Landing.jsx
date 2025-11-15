@@ -21,7 +21,7 @@ const Landing = () => {
             </button>
             <button className="nav-btn time-btn">
               <Plane size={16} />
-              <span>14h 25min</span>
+              <span>4h 55min</span>
             </button>
           </div>
           <div className="cathay-logo center-logo">
@@ -56,11 +56,11 @@ const Landing = () => {
         <div className="flight-timeline" style={{ marginTop: '180px', maxWidth: '1700px', width: '90%' }}>
           <div className="timeline-start">
             <span className="location">Indonesia</span>
-            <span className="time">Departure 8 min ago</span>
+            <span className="time">Departure 1 h 12 min ago</span>
           </div>
           <div className="timeline-track">
             <div className="timeline-progress"></div>
-            <Plane className="timeline-plane" size={24} style={{ transform: 'rotate(45deg)' }} />
+            <Plane className="timeline-plane" size={4} style={{ transform: 'rotate(45deg)' }} />
             <div className="milestone utensils"><Utensils size={16} /></div>
             <div className="milestone wifi"><Wifi size={16} /></div>
             <div className="milestone moon"><Moon size={16} /></div>
@@ -68,7 +68,7 @@ const Landing = () => {
           </div>
           <div className="timeline-end">
             <span className="location">Hong Kong</span>
-            <span className="time">Arriving in 12 h 22 min</span>
+            <span className="time">Arriving in 3 h 43 min</span>
           </div>
         </div>
 

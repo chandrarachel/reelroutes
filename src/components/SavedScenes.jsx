@@ -19,7 +19,7 @@ const SavedScenes = ({ userId }) => {
       title: 'Hong Mi Chang',
       location: 'Mong Kok, Hong Kong',
       type: 'food',
-      description: 'Michelin-starred dim sum restaurant',
+      // description: 'Michelin-starred dim sum restaurant',
       image: haoHaoDimSumImg,
       price: 'HKD 2,500',
       asiaMiles: 15000,
