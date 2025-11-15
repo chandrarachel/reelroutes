@@ -1,98 +1,147 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { useRouter } from "expo-router";
+import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { CircleActionButton } from './CircleActionButton'; 
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+export type Destination = {
+  id: string;
+  name: string;
+  location: string;
+  image: string;
+  description: string;
+  hour: string;
+  direction: string;
+  uber: string;
+  visited?: boolean;
+};
+
+// Example mock data - using only one destination
+const initialData: Destination[] = [
+  {
+    id: '1',
+    name: 'Tokyo Tower',
+    location: 'Tokyo, Japan',
+    image: 'https://lansonplace.com/wp-content/uploads/shutterstock_1657814068.jpg.optimal.jpg',
+    description: 'Experience the vibrant city of Tokyo from the iconic Tokyo Tower. This communications and observation tower offers breathtaking views of the city skyline.',
+    hour: '9:00 AM - 10:00 PM',
+    direction: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan',
+    uber: 'uber://action?dropoff[latitude]=35.6586&dropoff[longitude]=139.7454',
+    visited: false
+  },
+];
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
+  const [destinations, setDestinations] = useState<Destination[]>(initialData);
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  // Get the first (and only) destination
+  const destination = destinations[0];
+
+  return (
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: destination.image }} style={styles.image} />
+          <View style={styles.imageOverlay}>
+            <View style={styles.imageOverlayText}>
+              <Text style={styles.name}>{destination.name}</Text>
+              <Text style={styles.location}>{destination.hour}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.actionContainer}>
+          
+        </View>
+        <View style={styles.detailsContainer}>
+          <View style={styles.infoSection}>
+            <Text style={styles.sectionTitle}>Description</Text>
+            <Text style={styles.sectionContent}>{destination.description}</Text>
+          </View>
+
+          <View style={styles.infoSection}>
+            <Text style={styles.sectionTitle}>Address</Text>
+            <Text style={styles.sectionContent}>{destination.direction}</Text>
+          </View>
+
+          <View style={styles.visitedContainer}>
+            <Text style={styles.visitedText}>
+              {destination.visited ? '✓ Visited' : 'Not visited yet'}
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
-  stepContainer: {
-    gap: 8,
+  imageContainer: {
+    position: 'relative',
+    width: '100%',
+  },
+  image: {
+    width: '100%',
+    height: 300,
+  },
+  imageOverlay: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 30,
+    backgroundColor: 'white',
+    padding: 16,
+  },
+  imageOverlayText: {
+    paddingLeft: 10,
+    gap: 6,
+    paddingVertical: 8,
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: "400",
+    color: 'black',
+  },
+  location: {
+    fontSize: 15,
+    color: 'black',
+    opacity: 0.9,
+  },
+  actionContainer: {
+
+  },
+
+  detailsContainer: {
+    padding: 20,
+  },
+  infoSection: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  sectionContent: {
+    fontSize: 16,
+    color: '#666',
+    lineHeight: 22,
+  },
+  visitedContainer: {
+    marginTop: 16,
+    padding: 12,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  visitedText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2ecc71',
   },
 });
