@@ -56,7 +56,7 @@ export default function Dashboard() {
             onPress={() => handlePress(item)}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.user_id}
         showsVerticalScrollIndicator={false}
       />
 

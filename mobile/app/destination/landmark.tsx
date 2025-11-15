@@ -1,6 +1,6 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity,  Linking, Alert, Platform } from 'react-native';
+import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Linking, Alert, Platform } from 'react-native';
 import { Destination } from '../../types/destination';
 import { CircleActionButton } from '../../components/CircleActionButton'; 
 import { MediaCard } from '../../components/MediaCard';
@@ -82,7 +82,20 @@ export default function LandmarkScreen({ destination }: LandmarkScreenProps) {
           longitude: destination.longitude,
           placeName: destination.name
         });
+    };
+
+    const openUber = (latitude: number, longitude: number, placeName: string) => {
+        const url = `uber://?action=setDropoff&dropoff[latitude]=${latitude}&dropoff[longitude]=${longitude}&dropoff[nickname]=${encodeURIComponent(placeName)}`;
+        
+        Linking.openURL(url).catch(() => {
+          Alert.alert('Uber not installed', 'Please install Uber app');
+        });
       };
+      
+    // Usage in your Uber button
+    const handleUberPress = () => {
+        openUber(destination.latitude, destination.longitude, destination.name);
+    };
 
   return (
     <View style={styles.container}>
@@ -117,7 +130,7 @@ export default function LandmarkScreen({ destination }: LandmarkScreenProps) {
           <CircleActionButton
             icon={CarTaxiFront}
             title="Order Uber Taxi"
-            onPress={() => console.log('Order Uber Taxi pressed')}
+            onPress={handleUberPress}
           />
         </View>
         

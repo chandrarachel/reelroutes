@@ -1,5 +1,5 @@
 export interface Destination {
-    id: string;
+    user_id: string;
     name: string;
     location: string;
     image: string;
