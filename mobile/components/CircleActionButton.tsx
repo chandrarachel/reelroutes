@@ -17,9 +17,9 @@ export const CircleActionButton: React.FC<CircleButtonProps> = ({
   icon: Icon,
   title,
   onPress,
-  size = 80,
-  backgroundColor = '#007AFF',
-  iconColor = '#FFFFFF',
+  size = 56,
+  backgroundColor = '#D1CEC5',
+  iconColor = '#423d32',
   textColor = '#000000',
   disabled = false,
 }) => {
@@ -30,7 +30,7 @@ export const CircleActionButton: React.FC<CircleButtonProps> = ({
     backgroundColor: disabled ? '#CCCCCC' : backgroundColor,
   };
 
-  const iconSize = size * 0.4; // Icon size relative to button size
+  const iconSize = size * 0.5; // Icon size relative to button size
 
   return (
     <View style={styles.container}>
@@ -40,9 +40,9 @@ export const CircleActionButton: React.FC<CircleButtonProps> = ({
         disabled={disabled}
         activeOpacity={0.7}
       >
-        <Icon size={iconSize} color={iconColor} />
+        <Icon size={iconSize} color={iconColor} strokeWidth={1.5}/>
       </TouchableOpacity>
-      <Text style={[styles.title, { color: textColor }]} numberOfLines={2}>
+      <Text style={[styles.title, { color: textColor, fontSize: 12, maxWidth: size }]} numberOfLines={2}>
         {title}
       </Text>
     </View>
@@ -57,13 +57,6 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
     elevation: 5,
   },
   title: {

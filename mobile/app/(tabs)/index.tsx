@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useRouter } from "expo-router";
-import { StyleSheet, View, Image, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Image, Text, ScrollView, FlatList } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { CircleActionButton } from './CircleActionButton'; 
+import { CircleActionButton } from '../../components/CircleActionButton'; 
+import { MediaCard } from '../../components/MediaCard';
+import { 
+  MapPin,
+  CarTaxiFront,
+} from 'lucide-react-native';
 
 export type Destination = {
   id: string;
@@ -16,14 +21,42 @@ export type Destination = {
   visited?: boolean;
 };
 
+
+const horizontalData = [
+  {
+    id: '1',
+    imageUrl: 'https://images.unsplash.com/photo-1540959733332-0b10b2484a93',
+    title: 'Featured Destination',
+    description: 'Top pick for this week',
+  },
+  {
+    id: '2',
+    imageUrl: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
+    title: 'Popular Spot',
+    description: 'Most visited location',
+  },
+  {
+    id: '3',
+    imageUrl: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6',
+    title: 'Hidden Gem',
+    description: 'Less crowded, amazing views',
+  },
+  {
+    id: '4',
+    imageUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9',
+    title: 'Cultural Site',
+    description: 'Rich history and tradition',
+  },
+];
+
 // Example mock data - using only one destination
 const initialData: Destination[] = [
   {
     id: '1',
-    name: 'Tokyo Tower',
+    name: 'Night Street Food Hunting',
     location: 'Tokyo, Japan',
     image: 'https://lansonplace.com/wp-content/uploads/shutterstock_1657814068.jpg.optimal.jpg',
-    description: 'Experience the vibrant city of Tokyo from the iconic Tokyo Tower. This communications and observation tower offers breathtaking views of the city skyline.',
+    description: 'Trinkets, jade, antiques, as well as electronics and watches are sold at the bustling night market.',
     hour: '9:00 AM - 10:00 PM',
     direction: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan',
     uber: 'uber://action?dropoff[latitude]=35.6586&dropoff[longitude]=139.7454',
@@ -51,7 +84,16 @@ export default function HomeScreen() {
           </View>
         </View>
         <View style={styles.actionContainer}>
-          
+          <CircleActionButton
+            icon={MapPin}
+            title="Direction"
+            onPress={() => console.log('Direction pressed')}
+          />
+          <CircleActionButton
+            icon={CarTaxiFront}
+            title="Order Uber Taxi"
+            onPress={() => console.log('Order Uber Taxi pressed')}
+          />
         </View>
         <View style={styles.detailsContainer}>
           <View style={styles.infoSection}>
@@ -64,11 +106,32 @@ export default function HomeScreen() {
             <Text style={styles.sectionContent}>{destination.direction}</Text>
           </View>
 
+          <View style={styles.movieSection}>
+            <Text style={styles.sectionTitle}>In Media</Text>
+            <FlatList
+              data={horizontalData}
+              overScrollMode='never'
+              renderItem={({ item }) => (
+                <MediaCard
+                  imageUrl={item.imageUrl}
+                  title={item.title}
+                  description={item.description}
+                  onPress={() => console.log('Pressed:', item.title)}
+                />
+              )}
+              keyExtractor={(item) => item.id}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalList}
+            />
+          </View>
+
           <View style={styles.visitedContainer}>
             <Text style={styles.visitedText}>
-              {destination.visited ? '✓ Visited' : 'Not visited yet'}
+              {destination.visited ? '✓ Visited' : 'Mark as visited'}
             </Text>
           </View>
+
         </View>
       </ScrollView>
     </View>
@@ -112,19 +175,23 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   actionContainer: {
-
+    marginTop: 15,
+    gap: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   detailsContainer: {
     padding: 20,
   },
+  movieSection: {},
   infoSection: {
     marginBottom: 24,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
+    fontSize: 24,
+    fontWeight: "400",
+    color: 'black',
     marginBottom: 8,
   },
   sectionContent: {
@@ -132,16 +199,20 @@ const styles = StyleSheet.create({
     color: '#666',
     lineHeight: 22,
   },
+  horizontalList: {
+    paddingHorizontal: 16,
+  },
   visitedContainer: {
     marginTop: 16,
     padding: 12,
     backgroundColor: '#f8f9fa',
     borderRadius: 8,
     alignItems: 'center',
+    marginBottom: 20,
   },
   visitedText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2ecc71',
+    color: '#016564',
   },
 });
