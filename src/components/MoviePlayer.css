@@ -192,7 +192,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 126, 58, 0.95);
+  background: #0165645b;
   border: none;
   border-radius: 50%;
   width: 100px;
@@ -207,7 +207,7 @@
 }
 
 .play-button:hover {
-  background: rgba(0, 126, 58, 1);
+  background: var(--cathay-green);
   transform: translate(-50%, -50%) scale(1.15);
   box-shadow: 0 12px 32px rgba(0, 126, 58, 0.6);
 }
@@ -524,9 +524,9 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, rgba(0, 126, 58, 1) 0%, rgba(0, 160, 75, 1) 100%);
+  background: linear-gradient(90deg, #0165645b 0%, #016564f6 100%);
   transition: width 0.3s ease;
-  box-shadow: 0 0 8px rgba(0, 126, 58, 0.6);
+  box-shadow: 0 0 8px #0165645b;
 }
 
 /* Movie Info Section - Cathay IFE Style */
@@ -557,7 +557,7 @@
 
 .info-tab:first-child {
   color: white;
-  border-bottom-color: rgba(0, 126, 58, 1);
+  border-bottom-color: var(--cathay-green);
 }
 
 .info-tab:hover {
@@ -599,9 +599,9 @@
 }
 
 .lang-btn.active {
-  background: rgba(0, 126, 58, 0.2);
-  border-color: rgba(0, 126, 58, 0.6);
-  color: rgba(0, 200, 95, 1);
+  background: #0165645b;
+  border-color: var(--cathay-green);
+  color: var(--cathay-green);
   font-weight: 600;
 }
 
@@ -662,15 +662,15 @@
 }
 
 .timeline-scene:hover {
-  border-color: rgba(0, 126, 58, 0.6);
+  border-color: var(--cathay-light-green);
   background: rgba(255, 255, 255, 0.06);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 126, 58, 0.2);
 }
 
 .timeline-scene.active {
-  border-color: rgba(0, 126, 58, 1);
-  background: rgba(0, 126, 58, 0.1);
+  border-color: var(--cathay-green);
+  background: #0165645b;
 }
 
 .timeline-image {
