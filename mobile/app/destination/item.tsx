@@ -21,27 +21,27 @@ interface ItemScreenProps {
 const horizontalData = [
     {
       id: '1',
-      imageUrl: 'https://images.unsplash.com/photo-1540959733332-0b10b2484a93',
-      title: 'Featured Destination',
-      description: 'Top pick for this week',
+      imageUrl: 'https://lifestyle.asiamiles.com/medias/83b172194ed043fe90198676e2e6ffc1/1600x1600/Cathay%2BMove%2BIn%2BStyle_suitcase_Group_large.webp',
+      title: 'Cathay',
+      description: 'Cathay x Samsonite suitcase (second edition)',
     },
     {
       id: '2',
-      imageUrl: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
-      title: 'Popular Spot',
-      description: 'Most visited location',
+      imageUrl: 'https://lifestyle.asiamiles.com/medias/53e03c319aa94dcc94629cfc3763f55c/900x900/DEL-citadel-00400580103%255B00%255D-02.webp',
+      title: 'Delsey',
+      description: 'DELSEY CITADEL 54CM 4 DOUBLE WHEELS EXPANDABLE TROLLEY CASE',
     },
     {
       id: '3',
-      imageUrl: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6',
-      title: 'Hidden Gem',
-      description: 'Less crowded, amazing views',
+      imageUrl: 'https://lifestyle.asiamiles.com/medias/8282e38a5d254bc9924878a15e6fed92/900x900/SAL_SQUASEM_Spinner_V2_Cover_Photo_1.webp',
+      title: 'American Tourister',
+      description: 'SQUASEM SPINNER',
     },
     {
       id: '4',
-      imageUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9',
-      title: 'Cultural Site',
-      description: 'Rich history and tradition',
+      imageUrl: 'https://lifestyle.asiamiles.com/medias/702468be58444d0baddb85c68521eaee/900x900/SAL_MINTER_Spinner_Cover_Photo_1.webp',
+      title: 'Samsonite',
+      description: 'MINTER Spinner',
     },
   ];
 
@@ -80,13 +80,8 @@ export default function ItemScreen({ destination }: ItemScreenProps) {
           />
         </View>
         <View style={styles.detailsContainer}>
-          <View style={styles.infoSection}>
-            <Text style={styles.sectionTitle}>Description</Text>
-            <Text style={styles.sectionContent}>{destination.description}</Text>
-          </View>
-
           <View style={styles.movieSection}>
-            <Text style={styles.sectionTitle}>In Media</Text>
+            <Text style={styles.sectionTitle}>Similar Products by Cathay</Text>
             <FlatList
               data={horizontalData}
               overScrollMode='never'
@@ -153,6 +148,7 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: "400",
       color: 'black',
+      marginBottom: 8,
     },
     location: {
       fontSize: 15,

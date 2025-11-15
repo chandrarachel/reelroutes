@@ -1,6 +1,6 @@
 import React from 'react';
 import { router } from 'expo-router';
-import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity,  Linking, Alert, Platform } from 'react-native';
 import { Destination } from '../../types/destination';
 import { CircleActionButton } from '../../components/CircleActionButton'; 
 import { MediaCard } from '../../components/MediaCard';
@@ -13,6 +13,40 @@ import {
 interface LandmarkScreenProps {
   destination: Destination;
 }
+
+interface OpenMapsParams {
+    latitude: number;
+    longitude: number;
+    placeName: string;
+  }
+  
+  export const openGoogleMaps = async ({ latitude, longitude, placeName }: OpenMapsParams) => {
+    try {
+      // Encode the place name for URL
+      const encodedPlaceName = encodeURIComponent(placeName);
+      
+      const urls = {
+        ios: `maps://?q=${encodedPlaceName}&ll=${latitude},${longitude}`,
+        android: `geo:${latitude},${longitude}?q=${encodedPlaceName}`,
+        web: `https://www.google.com/maps?q=${latitude},${longitude}&q=${encodedPlaceName}`
+      };
+  
+      const url = Platform.OS === 'ios' ? urls.ios : 
+                  Platform.OS === 'android' ? urls.android : urls.web;
+  
+      const supported = await Linking.canOpenURL(url);
+      
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        // Fallback to web version
+        await Linking.openURL(urls.web);
+      }
+    } catch (error) {
+      console.error('Error opening Google Maps:', error);
+      Alert.alert('Error', 'Could not open Google Maps');
+    }
+  };
 
 const horizontalData = [
   {
@@ -42,6 +76,14 @@ const horizontalData = [
 ];
 
 export default function LandmarkScreen({ destination }: LandmarkScreenProps) {
+    const handleOpenMaps = () => {
+        openGoogleMaps({
+          latitude: destination.latitude,
+          longitude: destination.longitude,
+          placeName: destination.name
+        });
+      };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -68,9 +110,9 @@ export default function LandmarkScreen({ destination }: LandmarkScreenProps) {
         
         <View style={styles.actionContainer}>
           <CircleActionButton
+            onPress={handleOpenMaps} 
             icon={MapPin}
             title="Direction"
-            onPress={() => console.log('Direction pressed')}
           />
           <CircleActionButton
             icon={CarTaxiFront}

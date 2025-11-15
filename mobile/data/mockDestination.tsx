@@ -15,11 +15,11 @@ export const mockDestinations: Destination[] = [
   },
   {
     id: '2',
-    name: 'Mount Fuji',
-    location: 'Shizuoka, Japan',
-    image: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
-    description: 'Japan\'s highest mountain at 3,776 meters. An active volcano and UNESCO World Heritage site known for its perfectly symmetrical cone.',
-    hour: '24/7 (Climbing season: July-August)',
+    name: 'Walk of Fame at Ave of Stars',
+    location: 'Tsim Sha Tsui, Hong Kong',
+    image: 'https://www.discoverhongkong.com/content/dam/dhk/data/poi/media/a/avenue-of-stars/avenue-of-stars-01.jpg',
+    description: 'A scenic waterfront promenade in Tsim Sha Tsui, Hong Kong, celebrating the city vibrant film industry and entertainment legends.',
+    hour: '24/7',
     category: 'landmark',
     latitude: 35.3606,
     longitude: 138.7274,
@@ -87,10 +87,10 @@ export const mockDestinations: Destination[] = [
   },
   {
     id: '8',
-    name: 'Nara Park',
-    location: 'Nara, Japan',
-    image: 'https://images.jdmagicbox.com/quickquotes/images_main/nike-air-jordan-1-mid-mens-footwear-white-black-166775736-je9fr.jpg',
-    description: 'Large public park famous for its hundreds of freely roaming deer considered sacred messengers of the gods in Shinto religion.',
+    name: 'Navy Blue Suitcase',
+    location: 'Hong Kong',
+    image: 'https://solgaard.co/cdn/shop/files/Gallery-CoC-L-Lifestyle-Blue.webp?v=1748370686&width=800',
+    description: 'A versatile blue medium-sized suitcase made from durable polycarbonate. Perfect for 1-2 week summer trips',
     hour: '',
     category: 'item',
     latitude: 34.6851,
@@ -109,28 +109,4 @@ export const mockDestinations: Destination[] = [
     longitude: 139.7004,
     visited: true
   },
-  {
-    id: '10',
-    name: 'Hakone Open-Air Museum',
-    location: 'Hakone, Japan',
-    image: 'https://images.jdmagicbox.com/quickquotes/images_main/nike-air-jordan-1-mid-mens-footwear-white-black-166775736-je9fr.jpg',
-    description: 'Japan\'s first open-air museum featuring sculptures and artworks set against the beautiful backdrop of Hakone mountains.',
-    hour: '',
-    category: 'item',
-    latitude: 35.2444,
-    longitude: 139.0514,
-    visited: false
-  },
-  {
-    id: '11',
-    name: 'Kinkaku-ji (Golden Pavilion)',
-    location: 'Kyoto, Japan',
-    image: 'https://images.jdmagicbox.com/quickquotes/images_main/nike-air-jordan-1-mid-mens-footwear-white-black-166775736-je9fr.jpg',
-    description: 'Zen Buddhist temple covered in gold leaf, beautifully reflected in the surrounding pond. A stunning example of Japanese architecture.',
-    hour: '',
-    category: 'item',
-    latitude: 35.0394,
-    longitude: 135.7292,
-    visited: false
-  }
 ];
