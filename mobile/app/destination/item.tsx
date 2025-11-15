@@ -1,130 +1,203 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { MapPin, Clock, Star, Users } from 'lucide-react-native';
+import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Destination } from '../../types/destination';
+import { router } from 'expo-router';
+
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useDestinations } from '../../hooks/useDestinations';
+import { CircleActionButton } from '../../components/CircleActionButton'; 
+import { MediaCard } from '../../components/MediaCard';
+import { 
+  MapPin,
+  ShoppingBag,
+  ChevronLeft,
+} from 'lucide-react-native';
+import { useRoute } from '@react-navigation/native';
 
 interface ItemScreenProps {
   destination: Destination;
 }
 
+const horizontalData = [
+    {
+      id: '1',
+      imageUrl: 'https://images.unsplash.com/photo-1540959733332-0b10b2484a93',
+      title: 'Featured Destination',
+      description: 'Top pick for this week',
+    },
+    {
+      id: '2',
+      imageUrl: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
+      title: 'Popular Spot',
+      description: 'Most visited location',
+    },
+    {
+      id: '3',
+      imageUrl: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6',
+      title: 'Hidden Gem',
+      description: 'Less crowded, amazing views',
+    },
+    {
+      id: '4',
+      imageUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9',
+      title: 'Cultural Site',
+      description: 'Rich history and tradition',
+    },
+  ];
+
 export default function ItemScreen({ destination }: ItemScreenProps) {
   return (
-    <ScrollView style={styles.container}>
-      {/* Hero Image */}
-      <Image source={{ uri: destination.image }} style={styles.heroImage} />
-      
-      {/* Content */}
-      <View style={styles.content}>
-        <Text style={styles.title}>🏛️ {destination.name}</Text>
-        <Text style={styles.subtitle}>Iconic Landmark</Text>
-        
-        {/* Quick Info */}
-        <View style={styles.infoGrid}>
-          <View style={styles.infoItem}>
-            <MapPin size={20} color="#666" />
-            <Text style={styles.infoText}>{destination.location}</Text>
-          </View>
-          <View style={styles.infoItem}>
-            <Clock size={20} color="#666" />
-            <Text style={styles.infoText}>{destination.hour}</Text>
-          </View>
+    <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: destination.image }} style={styles.image} />
         </View>
-        
-        {/* Description */}
-        <Text style={styles.description}>{destination.description}</Text>
-        
-        {/* Features */}
-        <View style={styles.features}>
-          <Text style={styles.sectionTitle}>Landmark Features</Text>
-          <View style={styles.featureList}>
-            <Text style={styles.featureItem}>• Observation decks</Text>
-            <Text style={styles.featureItem}>• Photo opportunities</Text>
-            <Text style={styles.featureItem}>• Guided tours available</Text>
-            <Text style={styles.featureItem}>• Souvenir shops</Text>
+
+        <TouchableOpacity 
+            onPress={() => router.back()}
+            style={[styles.backOverlay, { zIndex: 999 }]}
+            activeOpacity={0.7} // Optional: control press feedback
+            >
+            <View style={styles.backOverlayButton}>
+                <ChevronLeft size={22} />
+            </View>
+        </TouchableOpacity>
+
+        <View style={styles.captionContainer}>
+            <Text style={styles.name}>{destination.name}</Text>
+            <Text style={styles.sectionContent}>{destination.description}</Text>
           </View>
+        <View style={styles.actionContainer}>
+          <CircleActionButton
+            icon={MapPin}
+            title="Shop Location"
+            onPress={() => console.log('Direction pressed')}
+          />
+          <CircleActionButton
+            icon={ShoppingBag}
+            title="Order Online"
+            onPress={() => console.log('Order Uber Taxi pressed')}
+          />
         </View>
-        
-        {/* Visitor Tips */}
-        <View style={styles.tips}>
-          <Text style={styles.sectionTitle}>Visitor Tips</Text>
-          <Text style={styles.tipText}>Best visited in the morning to avoid crowds. Don't forget your camera for stunning city views!</Text>
+        <View style={styles.detailsContainer}>
+          <View style={styles.infoSection}>
+            <Text style={styles.sectionTitle}>Description</Text>
+            <Text style={styles.sectionContent}>{destination.description}</Text>
+          </View>
+
+          <View style={styles.movieSection}>
+            <Text style={styles.sectionTitle}>In Media</Text>
+            <FlatList
+              data={horizontalData}
+              overScrollMode='never'
+              renderItem={({ item }) => (
+                <MediaCard
+                  imageUrl={item.imageUrl}
+                  title={item.title}
+                  description={item.description}
+                  onPress={() => console.log('Pressed:', item.title)}
+                />
+              )}
+              keyExtractor={(item) => item.id}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalList}
+            />
+          </View>
+
+          <View style={styles.visitedContainer}>
+            <Text style={styles.visitedText}>
+              {destination.visited ? '✓ Visited' : 'Mark as visited'}
+            </Text>
+          </View>
+
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  heroImage: {
-    width: '100%',
-    height: 300,
-  },
-  content: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#007AFF',
-    fontWeight: '600',
-    marginBottom: 20,
-  },
-  infoGrid: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  infoText: {
-    fontSize: 14,
-    color: '#666',
-  },
-  description: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
-    marginBottom: 25,
-  },
-  features: {
-    backgroundColor: '#F8F9FA',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 20,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#333',
-  },
-  featureList: {
-    gap: 8,
-  },
-  featureItem: {
-    fontSize: 14,
-    color: '#555',
-    lineHeight: 20,
-  },
-  tips: {
-    backgroundColor: '#E3F2FD',
-    padding: 16,
-    borderRadius: 12,
-  },
-  tipText: {
-    fontSize: 14,
-    color: '#1565C0',
-    lineHeight: 20,
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    imageContainer: {
+      position: 'relative',
+      width: '100%',
+    },
+    image: {
+      width: '100%',
+      height: 300,
+    },
+    backOverlay: {
+        position: 'absolute',
+        top: 50,
+        left: 15,
+        backgroundColor: 'white',
+        padding: 12,
+        borderRadius: 50,
+      },
+      backOverlayButton: {
+      },
+    captionContainer: {
+        padding: 20,
+    },
+    imageOverlayText: {
+      paddingLeft: 10,
+      gap: 6,
+      paddingVertical: 8,
+    },
+    name: {
+      fontSize: 24,
+      fontWeight: "400",
+      color: 'black',
+    },
+    location: {
+      fontSize: 15,
+      color: 'black',
+      opacity: 0.9,
+    },
+    actionContainer: {
+      marginTop: 15,
+      gap: 40,
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
+  
+    detailsContainer: {
+      padding: 20,
+    },
+    movieSection: {},
+    infoSection: {
+      marginBottom: 24,
+    },
+    sectionTitle: {
+      fontSize: 24,
+      fontWeight: "400",
+      color: 'black',
+      marginBottom: 8,
+    },
+    sectionContent: {
+      fontSize: 16,
+      color: '#666',
+      lineHeight: 22,
+    },
+    horizontalList: {
+      paddingHorizontal: 16,
+    },
+    visitedContainer: {
+      marginTop: 16,
+      padding: 12,
+      backgroundColor: '#f8f9fa',
+      borderRadius: 8,
+      alignItems: 'center',
+      marginBottom: 20,
+    },
+    visitedText: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#016564',
+    },
+  });

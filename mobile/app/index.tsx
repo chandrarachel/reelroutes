@@ -15,6 +15,16 @@ export default function HomeScreen() {
     const { destinations, loading, error } = useDestinations();
 
     const handlePress = (destination: Destination) => {
+        console.log('NAVIGATING WITH:', {
+            name: destination.name,
+            image: destination.image,
+            location: destination.location,
+            lat: destination.latitude,
+            lng: destination.longitude,
+            category: destination.category,
+            id: destination.id
+        });
+
         setSelectedDestination(destination);
         console.log(destination.name);
 
