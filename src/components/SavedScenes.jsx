@@ -4,44 +4,51 @@ import { getSceneImageUrl } from '../lib/supabase';
 import { transactionAPI } from '../lib/api';
 import './SavedScenes.css';
 
+import haoHaoDimSumImg from '../assets/destinations/haoHaoDimSum.png';
+import nikeStoreImg from '../assets/destinations/nikeStore.png';
+import reelRoutesLogo from '../assets/reelRoutesWhiteLogo.svg';
+import hongKongMoA from '../assets/destinations/moa.png';
+
+import jaMorantShoes from '../assets/products/jaMorant.png';
+
 const SavedScenes = ({ userId }) => {
   // Mock saved scenes - in production, this would come from transactionAPI
   const [savedScenes, setSavedScenes] = useState([
     {
       id: 'scene-1',
-      title: 'Avenue of the Stars',
-      location: 'Hong Kong',
-      type: 'landmark',
-      description: 'Iconic waterfront promenade with stunning harbor views',
-      image: 'scenes/avenue-stars-1.jpg',
+      title: 'Hong Mi Chang',
+      location: 'Mong Kok, Hong Kong',
+      type: 'food',
+      // description: 'Michelin-starred dim sum restaurant',
+      image: haoHaoDimSumImg,
       price: 'HKD 2,500',
       asiaMiles: 15000,
       savedAt: '2025-11-14T10:30:00',
-      movieTitle: 'In the Mood for Love',
+      movieTitle: 'The Flavours of Friendship',
     },
     {
       id: 'scene-2',
-      title: 'Authentic Dim Sum',
-      location: 'Tim Ho Wan, Hong Kong',
-      type: 'food',
-      description: 'Michelin-starred dim sum restaurant',
-      image: 'scenes/dimsum-1.jpg',
-      price: 'HKD 150',
-      asiaMiles: 1000,
+      title: 'Nike Ja Morant One',
+      location: 'Nike Mong Kok Store, Hong Kong',
+      type: 'shopping',
+      description: 'Shoes worn by John Doe during the basketball game',
+      image: jaMorantShoes,
+      price: 'HKD 3,200',
+      asiaMiles: 20000,
       savedAt: '2025-11-14T11:45:00',
       movieTitle: 'Crazy Rich Asians',
     },
     {
       id: 'scene-3',
-      title: 'Victoria Peak',
-      location: 'Hong Kong',
+      title: 'Hong Kong Museum of Art',
+      location: 'Tsim Sha Tsui, Hong Kong',
       type: 'landmark',
-      description: 'Panoramic views of Hong Kong skyline',
-      image: 'scenes/victoria-peak-1.jpg',
-      price: 'HKD 3,200',
-      asiaMiles: 20000,
+      description: 'The area you selected is Hong Kong’s Museum of Art, right next to Avenue of Stars. Cloud Starships’s climax takes place to harken back to an earlier heartbreaking scene in the movie. Both popular tourist spots, it shouldn’t be a surprise that they are often placed high on places to visit lists to Hong Kong.',
+      image: hongKongMoA,
+      price: 'HKD 150',
+      asiaMiles: 2000,
       savedAt: '2025-11-14T14:20:00',
-      movieTitle: 'In the Mood for Love',
+      movieTitle: 'The Flavours of Friendship',
     },
   ]);
 

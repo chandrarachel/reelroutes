@@ -138,7 +138,7 @@ The app is now running at **http://localhost:5173** ✨
 
    - Click "Passenger"
    - Browse movies
-   - Select "In the Mood for Love"
+   - Select "The Flavours of Friendship"
    - Click Play
    - Wait for scene overlays (4:05, 8:40, 14:50)
    - Save a scene
