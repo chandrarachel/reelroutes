@@ -22,14 +22,14 @@ export default function HomeScreen() {
             lat: destination.latitude,
             lng: destination.longitude,
             category: destination.category,
-            id: destination.user_id
+            id: destination.destination_id
         });
 
         setSelectedDestination(destination);
         console.log(destination.name);
 
         const categorySlug = destination.category;
-        router.push(`/destination/${categorySlug}/${destination.user_id}`);
+        router.push(`/destination/${categorySlug}/${destination.destination_id}`);
       };
 
   return (
@@ -68,7 +68,7 @@ export default function HomeScreen() {
             onPress={() => handlePress(item)}
           />
         )}
-        keyExtractor={(item) => item.user_id}
+        keyExtractor={(item) => item.destination_id}
         showsVerticalScrollIndicator={false}
       />
 

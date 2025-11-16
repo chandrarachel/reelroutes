@@ -1,5 +1,6 @@
 export interface Destination {
     user_id: string;
+    destination_id: string;
     name: string;
     location: string;
     image: string;

@@ -2,7 +2,8 @@ import { Destination } from '../types/destination';
 
 export const mockDestinations: Destination[] = [
   {
-    user_id: '1',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '1',
     name: 'Victoria Peak',
     location: 'Hong Kong Island, Hong Kong',
     image: 'https://cdn.cheapoguides.com/wp-content/uploads/sites/7/2023/11/GettyImages-579757046-1-1024x600.jpg',
@@ -14,7 +15,8 @@ export const mockDestinations: Destination[] = [
     visited: true
   },
   {
-    user_id: '2',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '2',
     name: 'Walk of Fame at Ave of Stars',
     location: 'Tsim Sha Tsui, Hong Kong',
     image: 'https://www.discoverhongkong.com/content/dam/dhk/data/poi/media/a/avenue-of-stars/avenue-of-stars-01.jpg',
@@ -26,7 +28,8 @@ export const mockDestinations: Destination[] = [
     visited: false
   },
   {
-    user_id: '3',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '3',
     name: 'Tian Tan Buddha',
     location: 'Lantau Island, Hong Kong',
     image: 'https://www.artatsite.com/HongKong/images/beelden/groot/Buddha_Big_Tian_Tan_Boeddha_Lantau_Island_statue_sculpture_Art_at_Site_Hong_Kong_China.jpg',
@@ -38,7 +41,8 @@ export const mockDestinations: Destination[] = [
     visited: true
   },
   {
-    user_id: '4',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '4',
     name: 'Wines',
     location: 'Hong Kong',
     image: 'https://lifestyle.asiamiles.com/medias/5a344ea92e944dcb980eddba425de7bf/900x900/LWW_Kew%2BGardens%2BCarricante%2B%2526%2BMencia%2BDuo%252C%2B4%2Bbottles.webp',
@@ -50,7 +54,8 @@ export const mockDestinations: Destination[] = [
     visited: false
   },
   {
-    user_id: '5',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '5',
     name: 'Navy Blue Suitcase',
     location: 'Hong Kong',
     image: 'https://solgaard.co/cdn/shop/files/Gallery-CoC-L-Lifestyle-Blue.webp?v=1748370686&width=800',
@@ -62,7 +67,8 @@ export const mockDestinations: Destination[] = [
     visited: true
   },
   {
-    user_id: '6',
+    user_id: '123ace9b-8213-40cd-b28f-47148abcda1c',
+    destination_id: '6',
     name: 'TheraFace Mask Glo',
     location: 'Hong Kong',
     image: 'https://lifestyle.asiamiles.com/medias/6de9d616066a4e1993225235f21461f5/900x900/TheraFaceMask-Glo-1.webp',

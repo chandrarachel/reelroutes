@@ -17,7 +17,7 @@ export class DestinationService {
   static async getDestinationById(id: string): Promise<Destination | null> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        const destination = mockDestinations.find(dest => dest.user_id === id);
+        const destination = mockDestinations.find(dest => dest.destination_id === id);
         resolve(destination || null);
       }, 500);
     });
