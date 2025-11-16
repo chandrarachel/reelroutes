@@ -1,41 +1,22 @@
-export async function POST(request: Request) {
-    try {
-        const body = await request.json();
-        const response = await fetch('https://glasc-api.netlify.app/api/personalDetails', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        });
-        const data = await response.json();
-        console.log(data);
-        //test
-        console.log(data);
-        return Response.json(data);
-    } catch (error) {
-        return Response.json({ error: (error as Error).message }, { status: 500 });
-    }
-}
+import { Destination } from '../types/destination';
 
-export async function GET(request: Request) {
-    try {
-        const url = new URL(request.url);
-        const userId = url.searchParams.get('user_id');
-            
-        console.log(`https://glasc-api.netlify.app/api/personalDetails?user_id=${userId}`);
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000/api';
 
-        const response = await fetch(`https://glasc-api.netlify.app/api/personalDetails?user_id=${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+class LikesService {
+    async getUserLikes(userId: string): Promise<Destination[]> {
+      try {
+        const response = await fetch(`${API_BASE_URL}/likes/user/${userId}/likes`);
         
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(`Failed to fetch likes: ${response.status}`);
+        }
         
-        return Response.json(data);
-    } catch (error) {
-        return Response.json({ error: (error as Error).message }, { status: 500 });
+        return await response.json();
+      } catch (error) {
+        console.error('LikesService.getUserLikes error:', error);
+        throw error;
+      }
     }
-}
+  }
+  
+  export const likesService = new LikesService();

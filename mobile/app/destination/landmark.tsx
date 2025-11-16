@@ -51,7 +51,7 @@ interface OpenMapsParams {
 const horizontalData = [
   {
     id: '1',
-    imageUrl: 'https://images.unsplash.com/photo-1540959733332-0b10b2484a93',
+    imageUrl: 'https://360nomad.org/walking-to-victoria-peak/hong-kong-harbour-from-victoria-peak-360nomad-org/',
     title: 'Featured Destination',
     description: 'Top pick for this week',
   },
