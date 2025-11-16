@@ -18,6 +18,6 @@ export const useDestinationStore = create<DestinationStore>((set) => ({
     
     // Then navigate
     const categorySlug = destination.category.toLowerCase().replace(/\s+/g, '-');
-    router.push(`/destination/${categorySlug}/${destination.id}`);
+    router.push(`/destination/${categorySlug}/${destination.user_id}`);
   },
 }));
