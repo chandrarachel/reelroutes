@@ -1,20 +1,23 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Linking, Alert, Platform } from 'react-native';
-import { Destination } from '../../types/destination';
 import { router } from 'expo-router';
+
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Linking, Alert, Platform } from 'react-native';
 import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollOffset,
-} from 'react-native-reanimated';
+    interpolate,
+    useAnimatedRef,
+    useAnimatedStyle,
+    useScrollOffset,
+  } from 'react-native-reanimated';
+import { 
+    MapPin,
+    ShoppingBag,
+    ChevronLeft,
+  } from 'lucide-react-native';
+
+import { Destination } from '../../types/destination';
+
 import { CircleActionButton } from '../../components/CircleActionButton'; 
 import { MediaCard } from '../../components/MediaCard';
-import { 
-  MapPin,
-  ShoppingBag,
-  ChevronLeft,
-} from 'lucide-react-native';
 
 interface ItemScreenProps {
   destination: Destination;
@@ -54,27 +57,27 @@ export const openGoogleMaps = async ({ latitude, longitude, placeName }: OpenMap
 
 const horizontalData = [
   {
-    id: '1',
-    imageUrl: 'https://lifestyle.asiamiles.com/medias/83b172194ed043fe90198676e2e6ffc1/1600x1600/Cathay%2BMove%2BIn%2BStyle_suitcase_Group_large.webp',
-    title: 'Cathay',
+    destination_id: '1',
+    image: 'https://lifestyle.asiamiles.com/medias/83b172194ed043fe90198676e2e6ffc1/1600x1600/Cathay%2BMove%2BIn%2BStyle_suitcase_Group_large.webp',
+    name: 'Cathay',
     description: 'Cathay x Samsonite suitcase (second edition)',
   },
   {
-    id: '2',
-    imageUrl: 'https://lifestyle.asiamiles.com/medias/53e03c319aa94dcc94629cfc3763f55c/900x900/DEL-citadel-00400580103%255B00%255D-02.webp',
-    title: 'Delsey',
+    destination_id: '2',
+    image: 'https://lifestyle.asiamiles.com/medias/53e03c319aa94dcc94629cfc3763f55c/900x900/DEL-citadel-00400580103%255B00%255D-02.webp',
+    name: 'Delsey',
     description: 'DELSEY CITADEL 54CM 4 DOUBLE WHEELS EXPANDABLE TROLLEY CASE',
   },
   {
-    id: '3',
-    imageUrl: 'https://lifestyle.asiamiles.com/medias/8282e38a5d254bc9924878a15e6fed92/900x900/SAL_SQUASEM_Spinner_V2_Cover_Photo_1.webp',
-    title: 'American Tourister',
+    destination_id: '3',
+    image: 'https://lifestyle.asiamiles.com/medias/8282e38a5d254bc9924878a15e6fed92/900x900/SAL_SQUASEM_Spinner_V2_Cover_Photo_1.webp',
+    name: 'American Tourister',
     description: 'SQUASEM SPINNER',
   },
   {
-    id: '4',
-    imageUrl: 'https://lifestyle.asiamiles.com/medias/702468be58444d0baddb85c68521eaee/900x900/SAL_MINTER_Spinner_Cover_Photo_1.webp',
-    title: 'Samsonite',
+    destination_id: '4',
+    image: 'https://lifestyle.asiamiles.com/medias/702468be58444d0baddb85c68521eaee/900x900/SAL_MINTER_Spinner_Cover_Photo_1.webp',
+    name: 'Samsonite',
     description: 'MINTER Spinner',
   },
 ];
@@ -153,13 +156,13 @@ export default function ItemScreen({ destination }: ItemScreenProps) {
                 overScrollMode='never'
                 renderItem={({ item }) => (
                   <MediaCard
-                    imageUrl={item.imageUrl}
-                    title={item.title}
+                    imageUrl={item.image}
+                    title={item.name}
                     description={item.description}
-                    onPress={() => console.log('Pressed:', item.title)}
+                    onPress={() => console.log('Pressed:', item.name)}
                   />
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.destination_id}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.horizontalList}

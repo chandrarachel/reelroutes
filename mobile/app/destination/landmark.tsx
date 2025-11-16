@@ -1,14 +1,18 @@
 import React from 'react';
 import { router } from 'expo-router';
+
 import { ScrollView, View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Linking, Alert, Platform } from 'react-native';
+import { 
+    MapPin,
+    CarTaxiFront,
+    ChevronLeft,
+  } from 'lucide-react-native';
+
 import { Destination } from '../../types/destination';
+
 import { CircleActionButton } from '../../components/CircleActionButton'; 
 import { MediaCard } from '../../components/MediaCard';
-import { 
-  MapPin,
-  CarTaxiFront,
-  ChevronLeft,
-} from 'lucide-react-native';
+
 
 interface LandmarkScreenProps {
   destination: Destination;
@@ -50,27 +54,27 @@ interface OpenMapsParams {
 
 const horizontalData = [
   {
-    id: '1',
-    imageUrl: 'https://360nomad.org/walking-to-victoria-peak/hong-kong-harbour-from-victoria-peak-360nomad-org/',
-    title: 'Featured Destination',
+    destination_id: '1',
+    image: 'https://360nomad.org/walking-to-victoria-peak/hong-kong-harbour-from-victoria-peak-360nomad-org/',
+    name: 'Featured Destination',
     description: 'Top pick for this week',
   },
   {
-    id: '2',
-    imageUrl: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
-    title: 'Popular Spot',
+    destination_id: '2',
+    image: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc',
+    name: 'Popular Spot',
     description: 'Most visited location',
   },
   {
-    id: '3',
-    imageUrl: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6',
-    title: 'Hidden Gem',
+    destination_id: '3',
+    image: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6',
+    name: 'Hidden Gem',
     description: 'Less crowded, amazing views',
   },
   {
-    id: '4',
-    imageUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9',
-    title: 'Cultural Site',
+    destination_id: '4',
+    image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9',
+    name: 'Cultural Site',
     description: 'Rich history and tradition',
   },
 ];
@@ -152,13 +156,13 @@ export default function LandmarkScreen({ destination }: LandmarkScreenProps) {
               overScrollMode='never'
               renderItem={({ item }) => (
                 <MediaCard
-                  imageUrl={item.imageUrl}
-                  title={item.title}
+                  imageUrl={item.image}
+                  title={item.name}
                   description={item.description}
-                  onPress={() => console.log('Pressed:', item.title)}
+                  onPress={() => console.log('Pressed:', item.name)}
                 />
               )}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.destination_id}
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.horizontalList}

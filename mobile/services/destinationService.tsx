@@ -1,7 +1,7 @@
 import { Destination } from '../types/destination';
 import { mockDestinations } from '../data/mockDestination';
 
-// Mock service that will be replaced with real API calls
+// Mock service will be replaced with real API calls
 export class DestinationService {
   // This will be replaced with real API call
   static async getDestinations(): Promise<Destination[]> {
@@ -13,7 +13,6 @@ export class DestinationService {
     });
   }
 
-  // This will be replaced with real API call
   static async getDestinationById(id: string): Promise<Destination | null> {
     return new Promise((resolve) => {
       setTimeout(() => {

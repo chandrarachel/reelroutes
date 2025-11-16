@@ -1,9 +1,9 @@
-import { useLocalSearchParams, Stack } from 'expo-router';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useDestinationStore } from '../../../stores/destinationStore';
-import { router } from 'expo-router';
-import { ArrowLeft } from 'lucide-react-native';
 import { useEffect } from 'react';
+import { useLocalSearchParams, Stack, router } from 'expo-router';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { useDestinationStore } from '../../../stores/destinationStore';
+import { ArrowLeft } from 'lucide-react-native';
 
 // Import all category screens
 import LandmarkScreen from '../landmark';
@@ -15,14 +15,8 @@ export default function DynamicDestinationScreen() {
   const { category, id, image, location, lat, lng } = useLocalSearchParams();
   const { selectedDestination } = useDestinationStore();
 
-  // Debug: Log everything
   useEffect(() => {
-    console.log('=== DEBUG DYNAMIC SCREEN ===');
-    console.log('category:', category);
-    console.log('id:', id);
-    console.log('selectedDestination:', selectedDestination);
-    console.log('selectedDestination category:', selectedDestination?.category);
-    console.log('=== END DEBUG ===');
+    
   }, [category, id, selectedDestination]);
 
   if (!selectedDestination) {
@@ -38,21 +32,15 @@ export default function DynamicDestinationScreen() {
     );
   }
 
-  console.log('RENDER - Current category param:', category);
-  console.log('RENDER - Destination category:', selectedDestination.category);
-
   const renderScreen = () => {
     console.log('SWITCHING ON CATEGORY:', category);
     
     switch (category) {
       case 'landmark':
-        console.log("✅ MATCHED LANDMARK");
         return <LandmarkScreen destination={selectedDestination} />;
       case 'item':
-        console.log("✅ MATCHED ITEM");
         return <ItemScreen destination={selectedDestination} />;
       default:
-        console.log("❌ NO MATCH - Using default screen");
         return <DefaultScreen destination={selectedDestination} />;
     }
   };
